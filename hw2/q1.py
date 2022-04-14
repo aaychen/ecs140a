@@ -1,14 +1,17 @@
 class Stack:
     def __init__(self):
-        self.nums = []
+        self.nums = [] # stack initialized as empty
 
     def push(self, val):
+        ''' Adds an item onto the stack '''
         self.nums.append(val)
 
     def pop(self):
+        ''' Removes most recently added item from stack and returns it. Assumes stack is not empty. '''
         return self.nums.pop()
 
     def peek(self):
+        ''' Returns most recently added item from stack without removing it. Assumes stack is not empty. '''
         return self.nums[-1]
 
 if __name__ == '__main__':
@@ -28,10 +31,6 @@ if __name__ == '__main__':
     st2.push(1)
     st2.push(2)
     st2.push(3)
-    st2.push(10)
-    st2.push(5)
-    print(st2.pop())
-    print(st2.pop())
     print(st2.pop())
     print(st2.pop())
     print(st2.pop())
@@ -56,18 +55,3 @@ if __name__ == '__main__':
     print(st4.pop())
     print(st4.pop())
     print(st4.pop())
-
-    print("\ntest 5")
-    st5 = Stack()
-    st5.push(1)
-    print(st5.peek())
-    st5.push(3)
-    print(st5.pop())
-    st5.push(4)
-    print(st5.peek())
-    st5.push(10)
-    print(st5.pop())
-    st5.push(20)
-    print(st5.pop())
-    print(st5.pop())
-    print(st5.pop())
