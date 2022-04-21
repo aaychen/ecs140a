@@ -4,7 +4,13 @@ class SimpleParser:
         self.char_pos = -1
 
     def fun_s(self):
-        ch = self.get_next_char()
+        if self.peek_next_char() == None:
+            ch = None
+        elif self.char_pos == -1 and self.peek_next_char() not in "ab":
+            ch = self.peek_next_char()
+        else:
+            ch = self.get_next_char()
+
         if ch == 'a' and ch == self.peek_next_char():
             self.fun_s()
         elif self.fun_x():
@@ -14,19 +20,22 @@ class SimpleParser:
     
     def fun_x(self):
         ch = self.get_next_char()
-        if ch == 'c' or ch == 'd':
-            try:
-                self.get_next_char()
-            except IndexError:
-                return True
+        if (ch == 'c' or ch == 'd') and self.get_next_char() == None:
+            return True
         return False
 
     def get_next_char(self):
-        self.char_pos += 1
-        return self.string[self.char_pos]
+        try:
+            self.char_pos += 1
+            return self.string[self.char_pos]
+        except IndexError:
+            return None
 
     def peek_next_char(self):
-        return self.string[self.char_pos + 1]
+        try:
+            return self.string[self.char_pos + 1]
+        except IndexError:
+            return None
 
 def main():
     tests = ["bc", "acd", "aaad", "c", "2yz", ""]
