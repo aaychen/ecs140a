@@ -38,7 +38,30 @@ class SimpleParser:
             return None
 
 def main():
-    tests = ["bc", "acd", "aaad", "c", "2yz", ""]
+    # tests = ["bc", "acd", "aaad", "c", "2yz", ""]
+    tests = [
+        # given
+        "bc", # valid
+        "acd", # invalid at 2
+        "aaad", # valid
+        "c", # valid
+        "2yz", # invalid at 0
+        "", # invalid at 0
+        
+        # additional
+        # "ac", # valid
+        # "ad", # valid
+        "aaaaac", # valid
+        # "aaaaad", # valid
+        "bd", # valid
+        "aaaaa", # invalid at 5
+        "b", # invalid at 1
+        "bbbc", # invalid at 1
+        "cccc", # invalid at 1
+        "aaazzz", # invalid at 3
+        # "cbb", # invalid at 1
+        "ybb" # invalid at 0
+    ]
     for i, t in enumerate(tests):
         sp = SimpleParser(t)
         print(f'Test {i+1}: "{t}" ')
