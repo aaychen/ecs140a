@@ -4,30 +4,13 @@ class SimpleParser:
         self.char_pos = -1
 
     def fun_s(self):
-        is_success = False
         ch = self.get_next_char()
-        if ch == 'a': # handle repeats of 'a'
-            if ch == self.peek_next_char():
-                self.fun_s()
-            else:
-                is_success = self.fun_x()
-        elif ch == 'b':
-            is_success = self.fun_x()
-        else:
-            is_success = self.fun_x()
-
-        if is_success:
+        if ch == 'a' and ch == self.peek_next_char():
+            self.fun_s()
+        elif self.fun_x():
             print("Input is valid")
         else:
             print(f"Syntax error at character position {self.char_pos}")
-
-        # if ch == 'a' and ch == self.peek_next_char():
-        #     self.fun_s()
-        # elif self.fun_x():
-        #     print("Input is valid")
-        # else:
-        #     print(f"Syntax error at character position {self.char_pos}")
-    
     
     def fun_x(self):
         ch = self.get_next_char()
