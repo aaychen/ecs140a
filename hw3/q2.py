@@ -13,20 +13,21 @@ class SimpleParser:
         else: # if char is 'a' or 'b'
             ch = self.get_next_char()
 
-        if ch == 'a' and ch == self.peek_next_char(): # handle repeated 'a' chars
-            self.fun_s()
-        elif self.fun_x():
-            print("Input is valid")
-        else:
+        try:
+            if ch == 'a' and ch == self.peek_next_char(): # handle repeated 'a' chars
+                self.fun_s()
+            else:
+                self.fun_x()
+                print("Input is valid")
+        except:
             print(f"Syntax error at character position {self.char_pos}")
     
     def fun_x(self):
-        ''' Handles grammar rule for X. Return True if grammar rule is satisfied; else False '''
+        ''' Handles grammar rule for X. Raises an exception if grammar rule is not satisfied '''
         ch = self.get_next_char()
-        if (ch == 'c' or ch == 'd') and self.get_next_char() == None:
-            return True
-        return False
-
+        if not ((ch == 'c' or ch == 'd') and self.get_next_char() == None):
+            raise
+        
     def get_next_char(self):
         ''' Moves forward 1 position and returns character at new position. Returns None if out of bounds '''
         try:
@@ -54,17 +55,13 @@ def main():
         "", # invalid at 0
         
         # additional
-        # "ac", # valid
-        # "ad", # valid
         "aaaaac", # valid
-        # "aaaaad", # valid
         "bd", # valid
         "aaaaa", # invalid at 5
         "b", # invalid at 1
         "bbbc", # invalid at 1
         "cccc", # invalid at 1
         "aaazzz", # invalid at 3
-        # "cbb", # invalid at 1
         "ybb" # invalid at 0
     ]
     for i, t in enumerate(tests):
