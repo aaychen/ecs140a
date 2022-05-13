@@ -1,18 +1,11 @@
-{-
-(20 points) Given a non-negative integer n, write a function called fibSeq that computes (and re-
-turns) the first n Fibonacci numbers (in order) as a list
-Examples:
-• fibSeq 0 should return [0]
-• fibSeq 1 should return [0, 1]
-• fibSeq 9 should return [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
-Hint: Consider defining a helper function that has extra parameters to store previously calculated
-information.
-
-everything immutable
-no for while
-has constants
-lazy; strict compiler
--}
+-- (20 points) Given a non-negative integer n, write a function called fibSeq that computes (and re-
+-- turns) the first n Fibonacci numbers (in order) as a list
+-- Examples:
+-- • fibSeq 0 should return [0]
+-- • fibSeq 1 should return [0, 1]
+-- • fibSeq 9 should return [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+-- Hint: Consider defining a helper function that has extra parameters to store previously calculated
+-- information.
 
 -- findNthNumber(Int) -> Int
 --     if n < 0 return 0
