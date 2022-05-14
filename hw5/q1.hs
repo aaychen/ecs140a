@@ -19,6 +19,7 @@
 -- References:
 -- https://www.tutorialspoint.com/haskell/haskell_functions.htm
 
+-- Find the nth number in the Fibonacci sequence
 findNthNumber :: Int -> Int
 findNthNumber n
     | n < 0     = 0 -- if n < 0, return 0
