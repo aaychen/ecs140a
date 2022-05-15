@@ -1,73 +1,34 @@
--- (40 points) Solve Problem 2 from Homework 01. Specifically, given a list of strings, write a function
--- lcp that returns the longest common prefix of the strings.
--- Examples:
--- • lcp["apple", "app", "aple", "appl"] should return "ap"
-
--- cmpStr (string, string) -> string
---     find lcp of the two strings passed
---     check if char from both strings are equal
---         if equal, add onto resulting prefix
---         if not, current prefix is longest between the two strings
-
--- lcp (string array) -> string
---     use fold function to apply cmpStrings to and reduce string array to lcp
-
--- actual code
--- 1
--- cmpStr :: String -> String -> String
--- cmpStr s1 s2 = do
---     (x:xs) = s1
---     (y:ys) = s2
---     if x == y
---         then x ++ cmpStr xs ys
---         else ''
-
--- 2
--- cmpStr :: String -> String -> String
--- cmpStr s1 s2 = do
---     let (x:xs) = s1
---     let (y:ys) = s2
---     if x == y
---         then x ++ cmpStr xs ys
---         else ''
-
--- 3
--- cmpStr :: String -> String -> String
--- cmpStr s1 s2 = do
---     let (x:xs) = s1
---     let (y:ys) = s2
---     if x == y
---         then x ++ cmpStr xs ys
---         else []
-
--- 4 (working code)
--- cmpStr :: String -> String -> String
--- cmpStr s1 s2 = do
---     let (x:xs) = s1
---     let (y:ys) = s2
---     if x == y
---         then [x] ++ cmpStr xs ys
---         else []
-
--- fix bug where ["a", "abb", "ab"] gives ""
--- works for given test case
+-- Find the longest common prefix between 2 strings
 cmpStr :: String -> String -> String
 cmpStr s1 s2 = do
-    if s1 == [] || s2 == []
+    if s1 == [] || s2 == [] -- empty string check
         then []
     else do
+        -- compare first chars of both strings
         let (x:xs) = s1
         let (y:ys) = s2
         if x == y
-            then [x] ++ cmpStr xs ys
-        else []
-    
+            then [x] ++ cmpStr xs ys -- store char and recurse on rest of both strings
+        else [] -- no chars to add on if mismatch
 
+-- Uses helper function to get longest common prefix of all strings
 lcp :: [String] -> String
 lcp arr = do
-    let dummy = head arr
-    foldr cmpStr dummy arr
+    if arr == [] -- empty list check
+        then []
+    else do
+        let dummy = head arr
+        foldr cmpStr dummy arr -- use fold to apply helper function on the list of strings
 
 main = do
-    print (lcp ["a", "abb", "ab"])
+    -- given case
     print (lcp ["apple", "app", "aple", "appl"])
+
+    -- additional cases
+    print (lcp [])
+    print (lcp [""])
+    print (lcp ["abc"])
+    print (lcp ["abc", "xyz"])
+    print (lcp ["zzzzz", "zz", "zzzz"])
+    print (lcp ["bamboo", "bamboozled"])
+    print (lcp ["bamboo", "bamboozled", "bambam"])
