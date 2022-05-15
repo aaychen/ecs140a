@@ -25,10 +25,10 @@ main = do
     print (lcp ["apple", "app", "aple", "appl"])
 
     -- additional cases
-    print (lcp [])
-    print (lcp [""])
-    print (lcp ["abc"])
-    print (lcp ["abc", "xyz"])
-    print (lcp ["zzzzz", "zz", "zzzz"])
-    print (lcp ["bamboo", "bamboozled"])
-    print (lcp ["bamboo", "bamboozled", "bambam"])
+    print (lcp []) -- ""
+    print (lcp [""]) -- ""
+    print (lcp ["abc"]) -- "abc"
+    print (lcp ["abc", "xyz"]) -- ""
+    print (lcp ["zzzzz", "zz", "zzzz"]) -- "zz"
+    print (lcp ["bamboo", "bamboozled"]) -- "bamboo"
+    print (lcp ["bamboo", "bamboozled", "bambam"]) -- "bamb"
